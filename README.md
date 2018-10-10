@@ -1,2 +1,2 @@
 # PocketCloset
-PocketCloset
+PocketClosets

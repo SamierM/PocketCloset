@@ -1,97 +1,50 @@
 package com.example.michael.myapplication;
 
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Outfit {
+import com.example.michael.myapplication.Entry;
 
-    private int outfitId;
-    private String outfitName;
-    private Clothing hat;
-    private Clothing top; //shirt blouse etc
-    private Clothing bottom;
-    private Clothing shoes;
-    private Clothing outerwear;
 
-    public int getThumbnail() {
-        return thumbnail;
+public class Outfit extends Entry {
+
+    private List<Clothing> clothingList;
+    private String description;
+
+    public Outfit(String outfitName, List<Clothing> clothingList, String description, int id, String path) {
+        super(outfitName, path, id);
+        setEntryType(pocketClassType.OUTFIT_TYPE);
+        this.clothingList = clothingList;
+        this.description = description;
     }
 
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
+    public Outfit(String outfitName, int id, String path) {
+        this(outfitName, new ArrayList<Clothing>(), null, id, path); //need to get rid of thumbnail from everywher
     }
 
-    private List<Clothing> accessories;
-    int thumbnail;
-
-    public Outfit(String outfitName, int thumbnail) {
-        this.outfitName = outfitName;
-        accessories = new ArrayList<>();
-        this.thumbnail = thumbnail;
+    public String getDescription() {
+        return description;
     }
 
-    public int getOutfitId() {
-        return outfitId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setOutfitId(int outfitId) {
-        this.outfitId = outfitId;
+    public void addClothingToOutfit(Clothing clothingToAdd) {
+        this.clothingList.add(clothingToAdd);
     }
 
-    public String getOutfitName() {
-        return outfitName;
+    public List<Clothing> getClothingList() {
+        return clothingList;
     }
 
-    public void setOutfitName(String outfitName) {
-        this.outfitName = outfitName;
-    }
-
-    public Clothing getHat() {
-        return hat;
-    }
-
-    public void setHat(Clothing hat) {
-        this.hat = hat;
-    }
-
-    public Clothing getTop() {
-        return top;
-    }
-
-    public void setTop(Clothing top) {
-        this.top = top;
-    }
-
-    public Clothing getBottom() {
-        return bottom;
-    }
-
-    public void setBottom(Clothing bottom) {
-        this.bottom = bottom;
-    }
-
-    public Clothing getShoes() {
-        return shoes;
-    }
-
-    public void setShoes(Clothing shoes) {
-        this.shoes = shoes;
-    }
-
-    public Clothing getOuterwear() {
-        return outerwear;
-    }
-
-    public void setOuterwear(Clothing outerwear) {
-        this.outerwear = outerwear;
-    }
-
-    public List<Clothing> getAccessories() {
-        return accessories;
-    }
-
-    public Clothing addAccessory(Clothing newAccessory) {
-        accessories.add(newAccessory);
-        return newAccessory;
-    }
 }
